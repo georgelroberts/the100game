@@ -31,6 +31,7 @@ Please find the packages in requirements.txt
 
 - [X] Allow players to play more than 2 cards if they have suitable cards.
 - [X] Allow more advanced playing styles (e.g. if they are playing the 2 and 12 on the ascending pile, play the 12 first then jump back down to the 2).
+- [X] Add some sort of learning to find the best strategy (RL).
 
 <!-- CONTRIBUTING -->
 ## Contributing

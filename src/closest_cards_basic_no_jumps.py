@@ -9,7 +9,7 @@ from base_game import test_gameplay
 
 
 def main():
-    test_gameplay(ClosestCardsBasicNoJumps, [2,3,4], 1000)
+    test_gameplay(ClosestCardsBasicNoJumps, [2,3,4], 10000)
 
 
 class ClosestCardsBasicNoJumps(TheGame):
