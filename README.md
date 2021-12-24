@@ -17,6 +17,7 @@ To start the game, each player is dealt a number of cards depending on how many 
 - Anything else -> 6 cards each.
 On a player's turn, they must play two (or more if they wish) cards on any of the central piles. 
 To end the player's turn, the then pick up cards until they reach the maximum number of cards.
+A player is only allowed limited communication with other players: They may say if they want to go on a pile and if they have a close card, but they must not tell any fellow players what cards they have (i.e. any numbers).
 
 The game is won when the players have played all their cards in the correct order and the deck is empty.
 
@@ -28,9 +29,8 @@ Please find the packages in requirements.txt
 <!-- ROADMAP -->
 ## Roadmap
 
-- [] Optimise for putting two cards on piles (and for starting choice)
-- [] Add communication between players
-- [] Allow players to play more than 2 cards if they have suitable cards
+- [X] Allow players to play more than 2 cards if they have suitable cards.
+- [X] Allow more advanced playing styles (e.g. if they are playing the 2 and 12 on the ascending pile, play the 12 first then jump back down to the 2).
 
 <!-- CONTRIBUTING -->
 ## Contributing

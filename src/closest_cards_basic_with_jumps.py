@@ -1,3 +1,6 @@
+"""
+About: The simulates a game with no communication, but allowing '10' jumps.
+"""
 import numpy as np
 from typing import List, Tuple, Optional
 
@@ -6,11 +9,10 @@ from base_game import test_gameplay
 
 
 def main():
-    # test_gameplay(ClosestCardsBasicNoJumps, [2,3,4], 1000)
-    test_gameplay(ClosestCardsBasicNoJumps, [4], 1)
+    test_gameplay(ClosestCardsBasicWithJumps, [2,3,4], 1000)
 
 
-class ClosestCardsBasicNoJumps(TheGame):
+class ClosestCardsBasicWithJumps(TheGame):
     def __init__(self, no_players=4):
         super().__init__(no_players)
 
@@ -19,11 +21,26 @@ class ClosestCardsBasicNoJumps(TheGame):
         min_difference = 98 # difference must be lower than this
         best_idx = -1
         for index, centre_card_no in enumerate(self.centre_pile):
-            if index < 2 and card_no <= centre_card_no: # i.e. ascending
-                    continue
-            elif index >= 2 and card_no >= centre_card_no: # i.e. descending
-                    continue
-            difference = np.abs(card_no - centre_card_no)
+            if (
+                    index < 2 and
+                    (
+                        card_no <= centre_card_no and
+                        (card_no != centre_card_no - 10)
+                    )
+                ): # i.e. ascending
+                continue
+            elif (
+                    index >= 2 and
+                    (
+                        card_no >= centre_card_no and
+                        (card_no != centre_card_no + 10)
+                    )
+                ): # i.e. descending
+                continue
+            if index < 2:
+                difference = card_no - centre_card_no
+            else:
+                difference = centre_card_no - card_no
             if difference < min_difference:
                 min_difference = difference
                 best_idx = index
