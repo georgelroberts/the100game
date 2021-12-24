@@ -1,5 +1,5 @@
 """
-About: The simulates a game with communication about '10' jumps (i.e. a player can advise other players not to place their card on a certain pile
+About: The simulates a game with communication about '10' jumps (i.e. a player can advise other players not to place their card on a certain pile)
 """
 import numpy as np
 from typing import List, Tuple, Optional
@@ -9,7 +9,7 @@ from base_game import test_gameplay
 
 
 def main():
-    test_gameplay(ClosestCardsBasicWithJumps, [2,3,4], 1000)
+    test_gameplay(ClosestCardsBasicWithJumps, [2,3,4], 10000)
 
 
 class ClosestCardsBasicWithJumps(TheGame):
