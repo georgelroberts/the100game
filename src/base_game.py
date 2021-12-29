@@ -73,10 +73,7 @@ class TheGame(ABC):
             game_condition = self.play_turn(player_index)
             if game_condition == GameCondition.WON:
                 return game_condition
-                # print('Game won!')
             elif game_condition == GameCondition.LOST:
-                # print(f"Game lost on turn no {self.turn_no}: Player {player_index} couldn't play cards " +\
-                #         f"{self.players[player_index].hand} on {self.centre_pile}")
                 return game_condition
             self.turn_no += 1
 
