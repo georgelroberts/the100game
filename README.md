@@ -21,6 +21,12 @@ A player is only allowed limited communication with other players: They may say 
 
 The game is won when the players have played all their cards in the correct order and the deck is empty.
 
+### Experiments
+- closest_cards_basic_no_jumps: Each player plays only their two best cards, one after another. They are not allowed to play 10 jumps.
+- closest_cards_basic_with_jumps: Each player plays only their two best cards, one after another.
+- closest_cards_10_communication_with_jumps: Each player plays only their two best cards, one after another. Players communicate whether they can jump another pile down by 10 to try to prevent other players playing there (unless their cards are much worse).
+- closest_cards_all_communication_with_jumps: Each player plays only their two best cards, one after another. Players communicate whether they can jump another pile down by 10 to try to prevent other players playing there (unless their cards are much worse). They also communicate if they have the very next cards.
+
 
 ## Prerequisites
 
@@ -48,8 +54,6 @@ Don't forget to give the project a star! Thanks again!
 5. Open a Pull Request
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-
-
 
 <!-- LICENSE -->
 ## License
