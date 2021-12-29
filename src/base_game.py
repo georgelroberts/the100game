@@ -107,7 +107,7 @@ class TheGame(ABC):
             return GameCondition.CONTINUING
         return GameCondition.WON
 
-    def __repr__(self) -> None:
+    def __repr__(self) -> str:
         return f"Centre pile: {self.centre_pile}. Turn number: {self.turn_no}"
 
     @abstractmethod
@@ -137,9 +137,5 @@ def test_gameplay(game_type: TheGame, no_players_list: List, no_runs: int) -> No
                 no_wins += 1
             else:
                 raise ValueError("Game shouldn't be ongoing")
-        print(f"Number of players: {no_players} wins:losses -> " +\
-                f"{no_wins}:{no_losses}")
-
-
-# TODO: Optimise for putting two cards on piles (and in starting choice)
-# TODO: Add dropping down 10 as an option
+        print(f"Number of players: {no_players} wins:losses -> " +
+              f"{no_wins}:{no_losses}")

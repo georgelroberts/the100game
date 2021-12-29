@@ -2,14 +2,14 @@
 About: The simulates a game with no communication and no '10' jumps.
 """
 import numpy as np
-from typing import List, Tuple, Optional
+from typing import Tuple, Optional
 
 from base_game import TheGame, GameCondition
 from base_game import test_gameplay
 
 
 def main():
-    test_gameplay(ClosestCardsBasicNoJumps, [2,3,4], 10000)
+    test_gameplay(ClosestCardsBasicNoJumps, [2, 3, 4], 10000)
 
 
 class ClosestCardsBasicNoJumps(TheGame):
@@ -18,13 +18,13 @@ class ClosestCardsBasicNoJumps(TheGame):
 
     def best_pile_for_card(self, card_no: int) -> Optional[Tuple[int, int]]:
         # Given a card, find the best difference and index in centre pile
-        min_difference = 98 # difference must be lower than this
+        min_difference = 98  # difference must be lower than this
         best_idx = -1
         for index, centre_card_no in enumerate(self.centre_pile):
-            if index < 2 and card_no <= centre_card_no: # i.e. ascending
-                    continue
-            elif index >= 2 and card_no >= centre_card_no: # i.e. descending
-                    continue
+            if index < 2 and card_no <= centre_card_no:  # i.e. ascending
+                continue
+            elif index >= 2 and card_no >= centre_card_no:  # i.e. descending
+                continue
             difference = np.abs(card_no - centre_card_no)
             if difference < min_difference:
                 min_difference = difference
@@ -50,7 +50,6 @@ class ClosestCardsBasicNoJumps(TheGame):
         return best_player_idx
 
     def play_best_card_in_hand(self, player_index: int) -> GameCondition:
-        card_played = False
         best_difference = 100
         best_card = -1
         best_pile_index = -1
