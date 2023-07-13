@@ -20,9 +20,7 @@ class Deck:
         random.shuffle(self.cards)
 
     def draw_card(self) -> Optional[int]:
-        if not self.cards:
-            return None
-        return self.cards.pop()
+        return None if not self.cards else self.cards.pop()
 
     def __repr__(self) -> str:
         return f"{self.cards}"
@@ -55,10 +53,7 @@ class TheGame(ABC):
         self.no_cards_per_turn = 2
 
     def get_max_no_cards_in_hand(self) -> int:
-        if self.no_players == 2:
-            return 7
-        else:
-            return 6
+        return 7 if self.no_players == 2 else 6
 
     def setup_board(self) -> None:
         self.deck = Deck()
@@ -71,9 +66,7 @@ class TheGame(ABC):
         while True:
             player_index = self.get_current_player_index()
             game_condition = self.play_turn(player_index)
-            if game_condition == GameCondition.WON:
-                return game_condition
-            elif game_condition == GameCondition.LOST:
+            if game_condition in [GameCondition.WON, GameCondition.LOST]:
                 return game_condition
             self.turn_no += 1
 
@@ -88,24 +81,20 @@ class TheGame(ABC):
 
     def fill_hand(self, player_index: int) -> None:
         while len(self.players[player_index].hand) < self.max_no_cards_in_hand:
-            card = self.deck.draw_card()
-            if card:
+            if card := self.deck.draw_card():
                 self.players[player_index].hand.append(card)
             else:
                 break
 
     def get_current_player_index(self) -> int:
         turn_index = self.start_player_index + self.turn_no
-        player_index = turn_index % self.no_players
-        return player_index
+        return turn_index % self.no_players
 
     def check_game_win(self) -> GameCondition:
-        for player in self.players:
-            if player.hand:
-                return GameCondition.CONTINUING
-        if self.deck.cards:
-            return GameCondition.CONTINUING
-        return GameCondition.WON
+        return next(
+            (GameCondition.CONTINUING for player in self.players if player.hand),
+            GameCondition.CONTINUING if self.deck.cards else GameCondition.WON,
+        )
 
     def __repr__(self) -> str:
         return f"Centre pile: {self.centre_pile}. Turn number: {self.turn_no}"
@@ -128,7 +117,7 @@ def test_gameplay(game_type: TheGame, no_players_list: List, no_runs: int) -> No
     for no_players in no_players_list:
         no_wins = 0
         no_losses = 0
-        for ii in range(no_runs):
+        for _ in range(no_runs):
             closest_cards_basic = game_type(no_players)
             game_condition = closest_cards_basic.play_game()
             if game_condition == GameCondition.LOST:

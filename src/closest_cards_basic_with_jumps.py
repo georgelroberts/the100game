@@ -68,8 +68,7 @@ class ClosestCardsBasicWithJumps(TheGame):
         best_card = -1
         best_pile_index = -1
         for card in self.players[player_index].hand:
-            result = self.best_pile_for_card(card)
-            if result:
+            if result := self.best_pile_for_card(card):
                 this_difference, pile_index = result
                 if this_difference < best_difference:
                     best_difference = this_difference

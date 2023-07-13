@@ -21,9 +21,12 @@ class ClosestCardsBasicNoJumps(TheGame):
         min_difference = 98  # difference must be lower than this
         best_idx = -1
         for index, centre_card_no in enumerate(self.centre_pile):
-            if index < 2 and card_no <= centre_card_no:  # i.e. ascending
-                continue
-            elif index >= 2 and card_no >= centre_card_no:  # i.e. descending
+            if (
+                index < 2
+                and card_no <= centre_card_no
+                or index >= 2
+                and card_no >= centre_card_no
+            ):  # i.e. ascending
                 continue
             difference = np.abs(card_no - centre_card_no)
             if difference < min_difference:
@@ -54,8 +57,7 @@ class ClosestCardsBasicNoJumps(TheGame):
         best_card = -1
         best_pile_index = -1
         for card in self.players[player_index].hand:
-            result = self.best_pile_for_card(card)
-            if result:
+            if result := self.best_pile_for_card(card):
                 this_difference, pile_index = result
                 if this_difference < best_difference:
                     best_difference = this_difference
